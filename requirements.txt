@@ -3,3 +3,4 @@ seldon-core
 scikit-learn
 numpy
 pickle-mixin
+itsdangerous==2.0.1
