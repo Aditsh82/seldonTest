@@ -35,4 +35,6 @@ class MyModel:
         feature_names : array of feature names (optional)
         """
         print("Predict called - will run identity function")
+
+        print("THIS IS FUN ==================================================================================!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         return X
