@@ -1,19 +1,10 @@
-# import pandas as pd
-# import pickle
-
-
-# class Iris:
-#     def __init__(self):
-#         self.model_name = "Iris"
-
-#         # load the model from disk
-#         self.model = pickle.load(open("finalized_model.sav", "rb"))
-
-#     def predict(self, X, features_names):
-#         df = pd.DataFrame(data=X, columns=features_names)
-        
-#         pred = self.model.predict(df)
-#         return pred
+import mimetypes
+from urllib import response
+import pandas as pd
+import pickle
+import numpy as np
+import json
+from flask import Response
 
 class MyModel:
     """
@@ -26,8 +17,24 @@ class MyModel:
         """
         print("Initializing.................")
 
+    def predict_raw(self, request):
+        data = request.get("data", {}).get("ndarray")
+        if data:
+            mult_types_array = np.array(data, dtype=object)
+            print(mult_types_array.item((0,0)))
+            print(mult_types_array.item((0,1)))
+            print(mult_types_array.item((0,2)))
+        res = {}
+        res["result"] = []
+        res["result"].append(mult_types_array.item((0,0)))
+        res["result"].append(mult_types_array.item((0,1)))
+        res["result"].append(mult_types_array.item((0,2)))
+
+        print(res)
+        return res
+
     def predict(self,X,features_names):
-        """
+        """X
         Return a prediction.
         Parameters
         ----------
@@ -37,4 +44,12 @@ class MyModel:
         print("Predict called - will run identity function")
 
         print("THIS IS FUN ==================================================================================!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        return X
+        # print(X)
+        # print(X[0][0])
+        # mult_types_array = np.array(X, dtype=object)
+        # print(mult_types_array.item((0,0)))
+        # print(mult_types_array.item((0,1)))
+        # print(mult_types_array.item((0,2)))
+
+        return mult_types_array
+
